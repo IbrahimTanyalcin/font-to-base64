@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font-2-base64</title>
+    <script src="./index.js" type="text/javascript" async></script>
+    <link rel="stylesheet" type="text/css" href="./index.css"/>
+  </head>
+  <body>
+    <input type="file" multiple>
+    <br><br>
+    Font name:
+    <input id="font-name" type="text" value="test-font">
+    <br><br>
+    <button onclick="base64convert(document.querySelector('input[type=\'file\']').files)">
+      Convert
+    </button>
+    <br><br>
+    <label for="test-area">
+      Test your font by typing here
+    </label>
+    <textarea name="test-area" oninput="this.nextElementSibling.setAttribute('data-value', this.value)"></textarea>
+    <div id="test-div"></div>
+    <br>
+    Action
+    <br>
+    <div id="action-div">
+      Clipboard
+      <input onchange="this.nextElementSibling.checked = !this.checked" type="radio" checked>
+      Download
+      <input onchange="this.previousElementSibling.checked = !this.checked" type="radio">
+    </div>
+    <br>
+    <button>
+      @font-face
+    </button>
+    <button>
+      src
+    </button>
+    <button>
+      script
+    </button>
+    <button>
+      taskq
+    </button>
+    <br><br>
+    <div class="loader"></div>
+  </body>
+</html>
