@@ -1,9 +1,21 @@
 !(async () => {
     const scrStart = performance.now(),
-          dCLElapsed = await new Promise(res => window.addEventListener("DOMContentLoaded",(e)=>{
+          asyncTimeout = 5000,
+          dCLElapsed = await new Promise(res => {
+            let timeout =  setTimeout(() => {
+              console.log("DOMContentLoaded", "load", "timeout");
               res(performance.now() - scrStart);
-          }));
-    console.log(dCLElapsed, "DOMContentLoaded");
+            }, asyncTimeout);
+            window.addEventListener("DOMContentLoaded",(e)=>{
+              clearTimeout(timeout);
+              res(performance.now() - scrStart);
+            });
+            window.addEventListener("load",(e)=>{
+              clearTimeout(timeout);
+              res(performance.now() - scrStart);
+            });
+          });
+    console.log(dCLElapsed, "DOMContentLoaded/load/timeout");
     mimeTypes = {
         eot: {mime: "application/vnd.ms-fontobject", format: "format('embedded-opentype')"},
         woff: {mime: "font/woff", format: "format('woff')"},
